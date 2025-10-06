@@ -89,14 +89,6 @@ function loginUser() {
         email: user.email
       }
       sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-      var currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-      console.log("currentUser==>", currentUser);
-      if (currentUser == null) {
-
-        var h4 = document.getElementById("welcomeUser").value;
-        h4.innerHTML = "Welcome ! " + currentUser.username;
-      }
       location.href = "./index.html"
     }
   }
@@ -106,9 +98,15 @@ function loginUser() {
   }
 }
 var currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+console.log("currentUser==>", currentUser.username);
 
 
-function logout() {
+var h4 = document.getElementById("welcomeUser");
+// h4.textContent = "Welcome ";
+console.log("h4==>", h4.innerText);
+h4.innerText = `Welcome ${currentUser.username}`;
+console.log("h4==>", h4.innerText);
+function logoutUser() {
   sessionStorage.removeItem("currentUser");
   location.href = "./login.html"
 }
